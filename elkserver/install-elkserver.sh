@@ -8,7 +8,7 @@
 
 LOGFILE="redelk-install.log"
 INSTALLER="RedELK elkserver installer"
-DEV="no"
+DEV="yes"
 WHATTOINSTALL="full"
 DOCKERCONFFILE="redelk-full.yml"
 DOCKERENVFILE=".env"
