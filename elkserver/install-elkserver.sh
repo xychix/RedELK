@@ -68,7 +68,7 @@ echoerror() {
 
 install_docker(){
     echo "[*] Installing docker"
-    if [ -x "$(command -v apt)"]; then
+    if [ -x "$(command -v apt)" ]; then
         echo "[*] apt based system found, trying to install docker via apt" | tee -a $LOGFILE
         apt -y install docker >> $LOGFILE 2>&1
         ERROR=$?
