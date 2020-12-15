@@ -403,3 +403,6 @@ echo "   - adjust the mounts/redelk-config/etc/cron.d/redelk file to include you
 echo "   - adjust all config files in mounts/redelk-config/etc/redelk to include your specifics like VT API, email server details, etc" | tee -a $LOGFILE
 echo "" | tee -a $LOGFILE
 echo "" | tee -a $LOGFILE
+
+echo " UGLY FIX TIME"
+docker exec -it redelk-base chown -R redelk.redelk /var/www/html/c2logs
