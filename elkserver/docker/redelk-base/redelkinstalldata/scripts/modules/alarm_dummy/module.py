@@ -27,7 +27,7 @@ class Module():
     def run(self):
         ret = initial_alarm_result
         ret['info'] = info
-        ret['fields'] = ['@timestamp', 'host.name', 'user.name', 'ioc.type', 'file.name', 'file.hash.md5', 'ioc.domain', 'c2.message', 'alarm.alarm_filehash']
+        ret['fields'] = ['agent.hostname','@timestamp', 'host.name', 'user.name', 'ioc.type', 'file.name', 'file.hash.md5', 'ioc.domain', 'c2.message', 'alarm.alarm_filehash']
         ret['groupby'] = []
         self.logger.debug('Running dummy alarm')
         for r in self.alarm_dummy():
