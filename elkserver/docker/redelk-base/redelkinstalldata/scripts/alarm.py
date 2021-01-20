@@ -74,11 +74,9 @@ if __name__ == '__main__':
         if a in alarms and alarms[a]['enabled']:
             logger.debug('Alarm %s enabled, processing hits' % a)
             r = aD[a]['result']
+            alarm_name = aD[a]['info']['submodule']
             #logger.debug('Alarm results: %s' % aD[a]['result'])
             for rHit in r['hits']['hits']:
-                alarm_name = aD[a]['info']['submodule']
-                # Let's tag the doc with the alarm name
-                setTags(alarm_name, [rHit])
                 # First check if there is a mutation data to add
                 if rHit['_id'] in r['mutations']:
                     m = r['mutations'][rHit['_id']]
@@ -86,6 +84,8 @@ if __name__ == '__main__':
                     m = {}
                 # And now, let's add mutations data to the doc and update back the hits
                 rHit = addAlarmData(rHit, m, alarm_name)
+            # Let's tag the doc with the alarm name
+            setTags(alarm_name, r['hits']['hits'])
             # Needed as groupHits will change r['hits']['hits'] and different alarms might do different grouping
             r = copy.deepcopy(aD[a]['result'])
             for c in cD:
