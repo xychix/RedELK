@@ -27,8 +27,8 @@ services:
     networks:
       - net
     # Only for dev purposes, expose ES port
-    ports:
-      - "9200:9200"
+    #ports:
+    #  - "9200:9200"
     expose:
       - "9200"
     volumes:
@@ -162,34 +162,34 @@ services:
     depends_on:
       - nginx
 
-  jupyter:
-    container_name: redelk-jupyter
-    build: ./docker/redelk-jupyter
-    networks:
-      - net
-    expose:
-      - "8888"
-    volumes:
-      - ./mounts/jupyter-workbooks:/home/jovyan/work
-    restart: always
-    depends_on:
-      - base
-
-  bloodhound:
-    container_name: redelk-bloodhound
-    image: specterops/bloodhound-neo4j
-    networks:
-      - net
-    volumes:
-      - bloodhound_data:/var/lib/neo4j
-    ports:
-      - "7687:7687"
-    expose:
-      - "7474"
-    environment:
-      - NEO4J_AUTH=${NEO4J_AUTH}
-      - NEO4J_dbms_memory_heap_initial__size=${NEO4J_dbms_memory_heap_initial__size}
-      - NEO4J_dbms_memory_heap_max__size=${NEO4J_dbms_memory_heap_max__size}
-      - NEO4J_dbms_memory_pagecache_size=${NEO4J_dbms_memory_pagecache_size}
-    depends_on:
-      - jupyter
+#  jupyter:
+#    container_name: redelk-jupyter
+#    build: ./docker/redelk-jupyter
+#    networks:
+#      - net
+#    expose:
+#      - "8888"
+#    volumes:
+#      - ./mounts/jupyter-workbooks:/home/jovyan/work
+#    restart: always
+#    depends_on:
+#      - base
+#
+#  bloodhound:
+#    container_name: redelk-bloodhound
+#    image: specterops/bloodhound-neo4j
+#    networks:
+#      - net
+#    volumes:
+#      - bloodhound_data:/var/lib/neo4j
+#    ports:
+#      - "7687:7687"
+#    expose:
+#      - "7474"
+#    environment:
+#      - NEO4J_AUTH=${NEO4J_AUTH}
+#      - NEO4J_dbms_memory_heap_initial__size=${NEO4J_dbms_memory_heap_initial__size}
+#      - NEO4J_dbms_memory_heap_max__size=${NEO4J_dbms_memory_heap_max__size}
+#      - NEO4J_dbms_memory_pagecache_size=${NEO4J_dbms_memory_pagecache_size}
+#    depends_on:
+#      - jupyter
